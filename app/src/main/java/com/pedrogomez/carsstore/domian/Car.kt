@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "car_table")
+@Entity(tableName = "car")
 data class Car(
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -28,5 +28,8 @@ data class Car(
     val dateRelease:String,
     @NonNull
     @ColumnInfo(name = "idCategory")
-    val idCategory:Long
+    val idCategory:Long,
+    @ColumnInfo(name = "idValue")
+    val idValue:Long,
+
 )
