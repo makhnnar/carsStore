@@ -1,7 +1,6 @@
 package com.pedrogomez.carsstore.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.pedrogomez.carsstore.domian.db.Car
 import com.pedrogomez.carsstore.domian.db.Category
@@ -61,15 +60,63 @@ class CarsLocalRepoTest {
         }
     }
 
+    @Test
+    fun updateCarSuccesPassedToDao() {
+        runBlocking {
+            launch(Dispatchers.Main) {
+                SUT.updateCar(
+                    DataHelper.carView
+                )
+                assert(carsDaoTD.car==DataHelper.carDB)
+                assert(carsDaoTD.value==DataHelper.valueDB)
+            }
+        }
+    }
+
+    @Test
+    fun addCategorySuccesPassedToDao() {
+        runBlocking {
+            launch(Dispatchers.Main) {
+                SUT.addCategory(
+                    DataHelper.categoryDB
+                )
+                assert(carsDaoTD.category==DataHelper.categoryDB)
+            }
+        }
+    }
+
+    @Test
+    fun getAllCategoriesSuccesFromDao() {
+        runBlocking {
+            launch(Dispatchers.Main) {
+                var categoriesListLD = SUT.getCategories()
+                assert(categoriesListLD==DataHelper.categoriesListLD)
+            }
+        }
+    }
+
+    @Test
+    fun getAllCarsSuccesFromDao() {
+        runBlocking {
+            launch(Dispatchers.Main) {
+                var carsListLD = SUT.getCars()
+                assert(carsListLD==DataHelper.carsListLD)
+            }
+        }
+    }
+
     class CarsDaoTD : CarsDao {
 
         var value: Value? =null
+
+        var category: Category? =null
 
         var car: Car? = null
 
         override suspend fun insertNewCategory(
                 category: Category
         ): Long {
+            this.category = category
             return 1
         }
 
@@ -85,24 +132,20 @@ class CarsLocalRepoTest {
             return 1
         }
 
-        override suspend fun updateCategory(category: Category) {
-
-        }
-
         override suspend fun updateValue(value: Value) {
-
+            this.value = value
         }
 
         override suspend fun updateCar(car: Car) {
-
+            this.car = car
         }
 
         override fun getAllCars(): LiveData<List<CarModel>> {
-            return MutableLiveData()
+            return DataHelper.carsListLD
         }
 
         override fun getAllCategories(): LiveData<List<Category>> {
-            return MutableLiveData()
+            return DataHelper.categoriesListLD
         }
 
     }

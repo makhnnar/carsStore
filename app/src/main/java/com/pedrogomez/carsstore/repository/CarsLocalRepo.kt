@@ -22,19 +22,22 @@ class CarsLocalRepo(
     }
 
     override suspend fun updateCar(carModel: CarModel) {
-
+        carsDao.updateCarWithValue(
+            mapperContract.getCarAsModelForDB(carModel),
+            mapperContract.getValueAsModelForDB(carModel)
+        )
     }
 
     override suspend fun getCars(): LiveData<List<CarModel>> {
-        return MutableLiveData()
+        return carsDao.getAllCars()
     }
 
     override suspend fun addCategory(category : Category) {
-
+        carsDao.insertNewCategory(category)
     }
 
     override suspend fun getCategories(): LiveData<List<Category>> {
-        return MutableLiveData()
+        return carsDao.getAllCategories()
     }
 
 }

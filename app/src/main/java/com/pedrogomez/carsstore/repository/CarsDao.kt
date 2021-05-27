@@ -20,9 +20,6 @@ interface CarsDao {
     suspend fun insertNewCar(car: Car) : Long
 
     @Update
-    suspend fun updateCategory(category: Category)
-
-    @Update
     suspend fun updateValue(value: Value)
 
     @Update
@@ -37,6 +34,17 @@ interface CarsDao {
             car.idValue = insertNewValue(it)
         }
         insertNewCar(car)
+    }
+
+    @Transaction
+    open suspend fun updateCarWithValue(
+            car: Car,
+            value: Value?
+    ){
+        value?.let {
+            updateValue(it)
+        }
+        updateCar(car)
     }
 
     @Query(
