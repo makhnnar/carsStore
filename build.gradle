@@ -1,6 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.4.21"
+    ext{
+        kotlin_version = "1.4.21"
+        koin_version = "2.0.1"
+        navigationVersion = "2.3.3"
+        androidXTestCoreVersion = '1.2.0'
+        androidXTestExtKotlinRunnerVersion = '1.1.1'
+        roomVersion = '2.2.6'
+        archLifecycleVersion = "2.3.0"
+        coroutinesVersion = '1.2.1'
+        robolectricVersion = '4.3.1'
+    }
     repositories {
         google()
         jcenter()
