@@ -1,4 +1,4 @@
-package com.pedrogomez.carsstore.domian
+package com.pedrogomez.carsstore.domian.db
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
