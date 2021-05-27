@@ -2,9 +2,9 @@ package com.pedrogomez.carsstore.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.pedrogomez.carsstore.domian.db.Category
 import com.pedrogomez.carsstore.domian.mapper.MapperContract
 import com.pedrogomez.carsstore.domian.view.CarModel
-import com.pedrogomez.carsstore.domian.view.CategoryModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
@@ -14,23 +14,26 @@ class CarsLocalRepo(
         private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : RepositoryContract {
 
-    override fun addCar(carModel: CarModel) {
-        carsDao.addCarWithValue()
+    override suspend fun addCar(carModel: CarModel) {
+        carsDao.addCarWithValue(
+                mapperContract.getCarAsModelForDB(carModel),
+                mapperContract.getValueAsModelForDB(carModel)
+        )
     }
 
-    override fun updateCar(carModel: CarModel) {
+    override suspend fun updateCar(carModel: CarModel) {
 
     }
 
-    override fun getCars(): LiveData<List<CarModel>> {
+    override suspend fun getCars(): LiveData<List<CarModel>> {
         return MutableLiveData()
     }
 
-    override fun addCategory(categoryModel: CategoryModel) {
+    override suspend fun addCategory(category : Category) {
 
     }
 
-    override fun getCategories(): LiveData<List<CategoryModel>> {
+    override suspend fun getCategories(): LiveData<List<Category>> {
         return MutableLiveData()
     }
 

@@ -1,6 +1,12 @@
 package com.pedrogomez.carsstore.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.pedrogomez.carsstore.domian.db.Car
+import com.pedrogomez.carsstore.domian.db.Category
+import com.pedrogomez.carsstore.domian.db.Value
+import com.pedrogomez.carsstore.domian.mapper.MapperContract
 import com.pedrogomez.carsstore.domian.view.CarModel
 import com.pedrogomez.carsstore.utils.DataHelper
 import kotlinx.coroutines.Dispatchers
@@ -9,41 +15,30 @@ import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.hamcrest.CoreMatchers
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentCaptor
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
 
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.instanceOf
-import org.hamcrest.CoreMatchers.notNullValue
-import org.hamcrest.CoreMatchers.nullValue
+
 import org.junit.After
-import org.junit.Assert.*
-import org.mockito.ArgumentMatchers.*
-import org.mockito.Mockito.*
-import org.mockito.ArgumentCaptor.*
-import org.mockito.Mockito.verify
 
-@RunWith(MockitoJUnitRunner::class)
+@RunWith(AndroidJUnit4::class)
 class CarsLocalRepoTest {
 
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
 
     lateinit var SUT: CarsLocalRepo
 
-    @Mock
-    lateinit var carsDaoMock : CarsDao
+    var carsDaoTD = CarsDaoTD()
+
+    var mapperContractTD = MapperContractTD()
 
     @Before
     fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
         SUT = CarsLocalRepo(
-            carsDaoMock
+            carsDaoTD,
+            mapperContractTD
         )
     }
 
@@ -60,11 +55,72 @@ class CarsLocalRepoTest {
                 SUT.addCar(
                     DataHelper.carView
                 )
-                verify(carsDaoMock).insertNewCar(
-                    DataHelper.carDB
-                )
+                assert(carsDaoTD.car==DataHelper.carDB)
+                assert(carsDaoTD.value==DataHelper.valueDB)
             }
         }
     }
 
+    class CarsDaoTD : CarsDao {
+
+        var value: Value? =null
+
+        var car: Car? = null
+
+        override suspend fun insertNewCategory(
+                category: Category
+        ): Long {
+            return 1
+        }
+
+        override suspend fun insertNewValue(
+                value: Value
+        ): Long {
+            this.value = value
+            return 1
+        }
+
+        override suspend fun insertNewCar(car: Car): Long {
+            this.car = car
+            return 1
+        }
+
+        override suspend fun updateCategory(category: Category) {
+
+        }
+
+        override suspend fun updateValue(value: Value) {
+
+        }
+
+        override suspend fun updateCar(car: Car) {
+
+        }
+
+        override fun getAllCars(): LiveData<List<CarModel>> {
+            return MutableLiveData()
+        }
+
+        override fun getAllCategories(): LiveData<List<Category>> {
+            return MutableLiveData()
+        }
+
+    }
+
+    class MapperContractTD : MapperContract {
+
+        override fun getCarAsModelForDB(carModel: CarModel): Car {
+            return DataHelper.carDB
+        }
+
+        override fun getValueAsModelForDB(carModel: CarModel): Value? {
+            return DataHelper.valueDB
+        }
+
+    }
+
 }
+
+
+
+

@@ -1,19 +1,19 @@
 package com.pedrogomez.carsstore.repository
 
 import androidx.lifecycle.LiveData
+import com.pedrogomez.carsstore.domian.db.Category
 import com.pedrogomez.carsstore.domian.view.CarModel
-import com.pedrogomez.carsstore.domian.view.CategoryModel
 
 interface RepositoryContract {
 
-    fun addCar(carModel: CarModel)
+    suspend fun addCar(carModel: CarModel)
 
-    fun updateCar(carModel: CarModel)
+    suspend fun updateCar(carModel: CarModel)
 
-    fun getCars() : LiveData<List<CarModel>>
+    suspend fun getCars() : LiveData<List<CarModel>>
 
-    fun addCategory(categoryModel: CategoryModel)
+    suspend fun addCategory(category: Category)
 
-    fun getCategories() : LiveData<List<CategoryModel>>
+    suspend fun getCategories() : LiveData<List<Category>>
 
 }

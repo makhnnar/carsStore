@@ -46,6 +46,9 @@ interface CarsDao {
         "value.unit AS valueQuantityUnit FROM car LEFT JOIN category ON car.idCategory =" +
         " category.id LEFT JOIN value ON car.idValue = value.id"
     )
-   fun getAllCars(): LiveData<List<CarModel>>
+    fun getAllCars(): LiveData<List<CarModel>>
+
+    @Query("SELECT * FROM category")
+    fun getAllCategories(): LiveData<List<Category>>
 
 }
