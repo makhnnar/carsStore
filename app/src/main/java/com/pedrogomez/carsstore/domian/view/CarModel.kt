@@ -1,26 +1,16 @@
 package com.pedrogomez.carsstore.domian.view
 
-import androidx.room.ColumnInfo
-
 data class CarModel (
-    @ColumnInfo(name = "id")
-    val id:Long,
-    @ColumnInfo(name = "cantSeats")
-    val cantSeats:Int,
-    @ColumnInfo(name = "price")
-    val price:Double,
-    @ColumnInfo(name = "isNew")
-    val isNew:Boolean,
-    @ColumnInfo(name = "model")
-    val model:String,
-    @ColumnInfo(name = "dateRelease")
-    val dateRelease:String,
-    @ColumnInfo(name = "categoryName")
+    val id:Long?,
+    val cantSeats:Int?,
+    val price:Double?,
+    val isNew:Boolean?,
+    val model:String?,
+    val dateRelease:String?,
+    val categoryId:Long?,
     val categoryName:String?,
-    @ColumnInfo(name = "valueName")
     val valueName:String?,
-    @ColumnInfo(name = "valueQuantity")
+    val valueQuantityId:Long?,
     val valueQuantity:Double?,
-    @ColumnInfo(name = "valueUnit")
-    val valueUnit:String?,
+    val valueQuantityUnit:String?,
 )

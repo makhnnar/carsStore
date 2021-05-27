@@ -30,6 +30,6 @@ data class Car(
     @ColumnInfo(name = "idCategory")
     val idCategory:Long,
     @ColumnInfo(name = "idValue")
-    val idValue:Long,
+    var idValue:Long?,
 
 )

@@ -1,6 +1,8 @@
 package com.pedrogomez.carsstore.di
 
 import androidx.room.Room
+import com.pedrogomez.carsstore.domian.mapper.MapperContract
+import com.pedrogomez.carsstore.domian.mapper.ViewToDBMapper
 import com.pedrogomez.carsstore.repository.CarsDB
 import com.pedrogomez.carsstore.repository.CarsLocalRepo
 import com.pedrogomez.carsstore.repository.RepositoryContract
@@ -18,10 +20,17 @@ val dbInstance = module {
     }
 }
 
+val viewToDbMapper = module{
+    single<MapperContract>{
+        ViewToDBMapper()
+    }
+}
+
 val carsRepository = module{
     single<RepositoryContract>{
         CarsLocalRepo(
-            get<CarsDB>().cars()
+            get<CarsDB>().cars(),
+            get()
         )
     }
 }
