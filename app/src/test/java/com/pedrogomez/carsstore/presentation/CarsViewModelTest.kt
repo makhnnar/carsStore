@@ -1,27 +1,16 @@
 package com.pedrogomez.carsstore.presentation
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.pedrogomez.carsstore.domian.db.Category
 import com.pedrogomez.carsstore.domian.view.CarModel
 import com.pedrogomez.carsstore.repository.RepositoryContract
 import com.pedrogomez.carsstore.utils.DataHelper
 import com.pedrogomez.carsstore.utils.getOrAwaitValue
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.CoreMatchers
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentCaptor
-
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.instanceOf
-import org.hamcrest.CoreMatchers.notNullValue
-import org.hamcrest.CoreMatchers.nullValue
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
@@ -76,6 +65,28 @@ class CarsViewModelTest {
             assertEquals(
                 repositoryContractTD.category,
                 DataHelper.categoryDB
+            )
+        }
+    }
+
+    @Test
+    fun updateCarInDB(){
+        runBlocking {
+            SUT.updateCar(DataHelper.carView)
+            assertEquals(
+                repositoryContractTD.carModel,
+                DataHelper.carView
+            )
+        }
+    }
+
+    @Test
+    fun checkSelectedCarDetail(){
+        runBlocking {
+            SUT.setCarDetail(DataHelper.carView)
+            assertEquals(
+                SUT.getCarDetail().getOrAwaitValue(),
+                DataHelper.carView
             )
         }
     }

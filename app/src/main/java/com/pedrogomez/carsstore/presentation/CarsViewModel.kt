@@ -14,6 +14,8 @@ class CarsViewModel(
 
     val categoriesList : LiveData<List<Category>> = contract.getCategories()
 
+    private var selectedCarDetail : MutableLiveData<CarModel> = MutableLiveData()
+
     fun addCar(carFromView: CarModel) {
         viewModelScope.launch {
             contract.addCar(carFromView)
@@ -25,5 +27,19 @@ class CarsViewModel(
             contract.addCategory(category)
         }
     }
+
+    fun updateCar(carFromView: CarModel) {
+        viewModelScope.launch {
+            contract.updateCar(carFromView)
+        }
+    }
+
+    fun setCarDetail(carFromView: CarModel){
+        selectedCarDetail.postValue(
+            carFromView
+        )
+    }
+
+    fun getCarDetail() = selectedCarDetail
 
 }
