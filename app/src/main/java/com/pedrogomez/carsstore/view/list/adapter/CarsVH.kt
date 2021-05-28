@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pedrogomez.carsstore.R
 import com.pedrogomez.carsstore.databinding.ViewHolderItemBinding
 import com.pedrogomez.carsstore.domian.view.CarModel
+import com.pedrogomez.carsstore.view.list.ListCarsView
 
 class CarsVH(
     inflater: LayoutInflater,
@@ -40,8 +41,22 @@ class CarsVH(
         category = binding?.tvCategory
     }
 
-    fun setData(item: CarModel?) {
-
+    fun setData(
+            item: CarModel?,
+            itemListActions: ListCarsView.ItemListActions?
+    ) {
+        item?.let {
+            model?.text = it.model
+            price?.text = "${it.price}"
+            category?.text = it.categoryName
+        }
+        binding?.let { view ->
+            view.itemContainer.setOnClickListener {
+                item?.let{
+                    itemListActions?.goToDetail(it)
+                }
+            }
+        }
     }
 
 }

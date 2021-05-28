@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.pedrogomez.carsstore.databinding.FragmentListBinding
+import com.pedrogomez.carsstore.domian.view.CarModel
 import com.pedrogomez.carsstore.presentation.CarsViewModel
 import org.koin.android.viewmodel.ext.android.getViewModel
 
-class ListCarsFragment : Fragment(){
+class ListCarsFragment : Fragment(),
+    ListCarsView.UserActions,
+    ListCarsView.ItemListActions{
 
     private val carsViewModel by lazy {
         requireParentFragment().getViewModel<CarsViewModel>()
@@ -33,6 +36,8 @@ class ListCarsFragment : Fragment(){
             false
         )
         val view = binding.root
+        binding.listView.userActions = this
+        binding.listView.itemListActions = this
         initObservers()
         return view
     }
@@ -41,9 +46,23 @@ class ListCarsFragment : Fragment(){
         carsViewModel.carsList.observe(
             viewLifecycleOwner,
             Observer {
-
+                binding.listView.setData(it)
             }
         )
+        carsViewModel.getCarDetail().observe(
+                viewLifecycleOwner,
+                Observer {
+                    //go to detail view
+                }
+        )
+    }
+
+    override fun addNewItem() {
+        //go to edit create fragment
+    }
+
+    override fun goToDetail(carModel: CarModel) {
+        carsViewModel.setCarDetail(carModel)
     }
 
 }
