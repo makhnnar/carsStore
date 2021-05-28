@@ -1,9 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Cars Store</string>
     <string name="model">Model</string>
     <string name="price">Price</string>
     <string name="category">Category</string>
-    <string name="dummy_model">mfl001</string>
     <string name="dummy_price">$12456</string>
     <string name="dummy_category">some category</string>
 </resources>
