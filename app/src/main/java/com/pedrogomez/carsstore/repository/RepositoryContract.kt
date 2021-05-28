@@ -10,10 +10,10 @@ interface RepositoryContract {
 
     suspend fun updateCar(carModel: CarModel)
 
-    suspend fun getCars() : LiveData<List<CarModel>>
+    fun getCars() : LiveData<List<CarModel>>
 
     suspend fun addCategory(category: Category)
 
-    suspend fun getCategories() : LiveData<List<Category>>
+    fun getCategories() : LiveData<List<Category>>
 
 }

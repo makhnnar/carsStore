@@ -28,7 +28,7 @@ class CarsLocalRepo(
         )
     }
 
-    override suspend fun getCars(): LiveData<List<CarModel>> {
+    override fun getCars(): LiveData<List<CarModel>> {
         return carsDao.getAllCars()
     }
 
@@ -36,7 +36,7 @@ class CarsLocalRepo(
         carsDao.insertNewCategory(category)
     }
 
-    override suspend fun getCategories(): LiveData<List<Category>> {
+    override fun getCategories(): LiveData<List<Category>> {
         return carsDao.getAllCategories()
     }
 
