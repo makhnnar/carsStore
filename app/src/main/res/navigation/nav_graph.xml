@@ -24,10 +24,10 @@
         android:label="fragment_producto_detail"
         tools:layout="@layout/fragment_detail">
         <action
-            android:id="@+id/action_listFragment_to_editCreateFragment"
+            android:id="@+id/action_detailFragment_to_editCreateFragment"
             app:destination="@id/editCreateFragment" />
         <action
-            android:id="@+id/action_listFragment_to_listFragment"
+            android:id="@+id/action_detailFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
 

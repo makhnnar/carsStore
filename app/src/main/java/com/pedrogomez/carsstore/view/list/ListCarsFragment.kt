@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.pedrogomez.carsstore.R
 import com.pedrogomez.carsstore.databinding.FragmentListBinding
 import com.pedrogomez.carsstore.domian.view.CarModel
 import com.pedrogomez.carsstore.presentation.CarsViewModel
@@ -49,20 +51,16 @@ class ListCarsFragment : Fragment(),
                 binding.listView.setData(it)
             }
         )
-        carsViewModel.getCarDetail().observe(
-                viewLifecycleOwner,
-                Observer {
-                    //go to detail view
-                }
-        )
     }
 
     override fun addNewItem() {
-        //go to edit create fragment
+        carsViewModel.setCarToEdit(null)
+        findNavController().navigate(R.id.action_listFragment_to_editCreateFragment)
     }
 
     override fun goToDetail(carModel: CarModel) {
-        carsViewModel.setCarDetail(carModel)
+        carsViewModel.setCarToView(carModel)
+        findNavController().navigate(R.id.action_listFragment_to_detailFragment)
     }
 
 }

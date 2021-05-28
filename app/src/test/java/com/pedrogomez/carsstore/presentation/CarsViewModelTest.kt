@@ -81,11 +81,22 @@ class CarsViewModelTest {
     }
 
     @Test
-    fun checkSelectedCarDetail(){
+    fun checkCarDetailToView(){
         runBlocking {
-            SUT.setCarDetail(DataHelper.carView)
+            SUT.setCarToView(DataHelper.carView)
             assertEquals(
-                SUT.getCarDetail().getOrAwaitValue(),
+                SUT.getCarToView().getOrAwaitValue(),
+                DataHelper.carView
+            )
+        }
+    }
+
+    @Test
+    fun checkCarDetailToEdit(){
+        runBlocking {
+            SUT.setCarToEdit(DataHelper.carView)
+            assertEquals(
+                SUT.getCarToEdit().getOrAwaitValue(),
                 DataHelper.carView
             )
         }
