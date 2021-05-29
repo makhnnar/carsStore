@@ -14,6 +14,48 @@
         android:layout_height="1dp"
         android:orientation="vertical" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdV1"
+        app:layout_constraintGuide_percent=".14"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdV2"
+        app:layout_constraintGuide_percent=".28"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdV3"
+        app:layout_constraintGuide_percent=".42"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdV4"
+        app:layout_constraintGuide_percent=".56"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdV5"
+        app:layout_constraintGuide_percent=".70"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdV6"
+        app:layout_constraintGuide_percent=".84"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal" />
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etModel"
         android:layout_width="0dp"
@@ -31,7 +73,7 @@
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/etPrice"/>
+        app:layout_constraintBottom_toTopOf="@id/gdV1"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etPrice"
@@ -47,10 +89,10 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/etModel"
+        app:layout_constraintTop_toBottomOf="@id/gdV1"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/etSeats"/>
+        app:layout_constraintBottom_toTopOf="@id/gdV2"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etSeats"
@@ -66,10 +108,10 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/etPrice"
+        app:layout_constraintTop_toBottomOf="@id/gdV2"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/sState"/>
+        app:layout_constraintBottom_toTopOf="@id/gdV3"/>
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/sState"
@@ -77,14 +119,17 @@
         android:layout_height="40dp"
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
-        android:entries="@array/state_car"
         android:textColor="@color/black"
         android:spinnerMode="dialog"
-        app:layout_constraintBottom_toTopOf="@id/etRelease"
+        android:textSize="14sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="1sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/gdH33"
-        app:layout_constraintTop_toBottomOf="@id/etSeats" />
+        app:layout_constraintTop_toBottomOf="@id/gdV3"
+        app:layout_constraintBottom_toTopOf="@id/gdV4"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etRelease"
@@ -100,10 +145,10 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/sState"
+        app:layout_constraintTop_toBottomOf="@id/gdV4"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/etCategory"/>
+        app:layout_constraintBottom_toTopOf="@id/gdV5"/>
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/sCategory"
@@ -114,10 +159,15 @@
         android:maxLines="1"
         android:gravity="center"
         android:spinnerMode="dialog"
-        app:layout_constraintTop_toBottomOf="@id/etRelease"
+        android:textSize="14sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="1sp"
+        app:layout_constraintTop_toBottomOf="@id/gdV5"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tvCategoryValue"/>
+        app:layout_constraintBottom_toTopOf="@+id/gdV6"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etCategory"
@@ -133,10 +183,10 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/etRelease"
+        app:layout_constraintTop_toBottomOf="@id/gdV5"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toStartOf="@id/btnDiscardCat"
-        app:layout_constraintBottom_toTopOf="@+id/tvCategoryValue"/>
+        app:layout_constraintBottom_toTopOf="@+id/gdV6"/>
 
     <ImageView
         android:id="@+id/btnDiscardCat"
@@ -144,10 +194,10 @@
         android:layout_height="40dp"
         android:src="@drawable/ic_close"
         app:tint="@color/red"
-        app:layout_constraintTop_toBottomOf="@id/etRelease"
+        app:layout_constraintTop_toBottomOf="@id/gdV5"
         app:layout_constraintStart_toEndOf="@id/etCategory"
         app:layout_constraintEnd_toStartOf="@id/btnAddCat"
-        app:layout_constraintBottom_toTopOf="@+id/tvCategoryValue"/>
+        app:layout_constraintBottom_toTopOf="@+id/gdV6"/>
 
     <ImageView
         android:id="@+id/btnAddCat"
@@ -155,48 +205,48 @@
         android:layout_height="40dp"
         android:src="@drawable/ic_done"
         app:tint="@color/green"
-        app:layout_constraintTop_toBottomOf="@id/etRelease"
+        app:layout_constraintTop_toBottomOf="@id/gdV5"
         app:layout_constraintStart_toEndOf="@id/btnDiscardCat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tvCategoryValue"/>
+        app:layout_constraintBottom_toTopOf="@+id/gdV6"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/tvCategoryValue"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:hint="@string/dummy_category_value"
-        android:textColor="@color/black"
         android:fontFamily="@font/montserrat_regular"
-        android:maxLines="1"
         android:gravity="center"
+        android:hint="@string/dummy_category_value"
+        android:maxLines="1"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:autoSizeMaxTextSize="16sp"
         app:autoSizeMinTextSize="12sp"
-        app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/sCategory"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnDone"
         app:layout_constraintStart_toEndOf="@id/gdH33"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/gdV6" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lbModel"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:maxLines="1"
         android:text="@string/model"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserrat_bold"
-        android:maxLines="1"
-        android:gravity="center"
         android:textSize="14sp"
         app:autoSizeMaxTextSize="16sp"
         app:autoSizeMinTextSize="12sp"
-        app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@id/gdV1"
         app:layout_constraintEnd_toStartOf="@id/gdH33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lbPrice"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lbPrice"
@@ -212,10 +262,10 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/lbModel"
+        app:layout_constraintTop_toBottomOf="@id/gdV1"
         app:layout_constraintEnd_toStartOf="@id/gdH33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lbSeats"/>
+        app:layout_constraintBottom_toTopOf="@id/gdV2"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lbSeats"
@@ -231,10 +281,10 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/lbPrice"
+        app:layout_constraintTop_toBottomOf="@id/gdV2"
         app:layout_constraintEnd_toStartOf="@id/gdH33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lbState"/>
+        app:layout_constraintBottom_toTopOf="@id/gdV3"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lbState"
@@ -250,10 +300,10 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/lbSeats"
+        app:layout_constraintTop_toBottomOf="@id/gdV3"
         app:layout_constraintEnd_toStartOf="@id/gdH33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lbRelease"/>
+        app:layout_constraintBottom_toTopOf="@id/gdV4"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lbRelease"
@@ -262,17 +312,19 @@
         android:text="@string/release_date"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat_bold"
-        android:maxLines="1"
+        android:maxLines="2"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:textSize="14sp"
         app:autoSizeMaxTextSize="16sp"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/lbState"
+        app:layout_constraintTop_toBottomOf="@id/gdV4"
         app:layout_constraintEnd_toStartOf="@id/gdH33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/lbCategory"/>
+        app:layout_constraintBottom_toTopOf="@id/gdV5"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lbCategory"
@@ -288,10 +340,10 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/lbRelease"
+        app:layout_constraintTop_toBottomOf="@id/gdV5"
         app:layout_constraintEnd_toStartOf="@id/gdH33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/lbCategoryValue"/>
+        app:layout_constraintBottom_toTopOf="@+id/gdV6"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lbCategoryValue"
@@ -300,14 +352,16 @@
         android:text="@string/category_value"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat_bold"
-        android:maxLines="1"
+        android:maxLines="2"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:textSize="14sp"
         app:autoSizeMaxTextSize="16sp"
-        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMinTextSize="10sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/lbCategory"
+        app:layout_constraintTop_toBottomOf="@id/gdV6"
         app:layout_constraintEnd_toStartOf="@id/gdH33"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

@@ -95,6 +95,13 @@ class EditCreateCarView @JvmOverloads constructor(
                 showAddCategory()
             }
         }*/
+        val array : Array<String> = resources.getStringArray(R.array.state_car)
+        val dataAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                this.context,
+                R.layout.simple_spinner_item,
+                array.toList()
+        )
+        sState.adapter = dataAdapter
     }
 
     private fun showAddCategory() {
@@ -122,16 +129,16 @@ class EditCreateCarView @JvmOverloads constructor(
         val category = categories[sCategory?.selectedItemPosition ?: 0]
         carModel = CarModel(
                 0,
-                etSeats?.text.toString().toInt(),
-                etPrice?.text.toString().toDouble(),
-                sState?.selectedItemPosition == 0,
-                etModel?.text.toString(),
-                etDate?.text.toString(),
+                etSeats.text.toString().toInt(),
+                etPrice.text.toString().toDouble(),
+                sState.selectedItemPosition == 0,
+                etModel.text.toString(),
+                etDate.text.toString(),
                 category.id,
                 category.name,
                 category.value,
                 0,
-                etCatValue?.text.toString().toDouble(),
+                etCatValue.text.toString().toDouble(),
                 ""
         )
         carModel?.let {
@@ -151,15 +158,15 @@ class EditCreateCarView @JvmOverloads constructor(
                 R.layout.simple_spinner_item,
                 listTitle.toList()
         )
-        sCategory?.adapter = dataAdapter
+        sCategory.adapter = dataAdapter
         carModel?.let {
-            lbCatValue?.text = it.valueName
-            etCatValue?.setText("${it.valueQuantity} ${it.valueQuantityUnit}")
+            lbCatValue.text = it.valueName
+            etCatValue.setText("${it.valueQuantity} ${it.valueQuantityUnit}")
             val selected = categories.filter { cat ->
                 it.id==cat.id
             }
             var indexInArray = categories.indexOf(selected)
-            sCategory?.setSelection(indexInArray)
+            sCategory.setSelection(indexInArray)
         }
     }
 
@@ -167,13 +174,13 @@ class EditCreateCarView @JvmOverloads constructor(
         hideEtCatAndBtns()
         carModel?.let {
             this.carModel = it
-            etModel?.setText(it.model)
-            etPrice?.setText("${it.price}")
-            sState?.setSelection(
+            etModel.setText(it.model)
+            etPrice.setText("${it.price}")
+            sState.setSelection(
                     getState(it.isNew ?: false)
             )
-            etSeats?.setText("${it.cantSeats}")
-            etDate?.setText(it.dateRelease)
+            etSeats.setText("${it.cantSeats}")
+            etDate.setText(it.dateRelease)
         }
     }
 

@@ -14,6 +14,7 @@
     <string name="dummy_date">12/12/24</string>
     <string name="category_value">Category Value</string>
     <string name="dummy_category_value">1020 GHz</string>
+    <string name="there_is_no_elements_to_show_please_add_some">There are no elements to show. Please add some</string>
     <string-array name="state_car">
         <item>New</item>
         <item>Used</item>

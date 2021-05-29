@@ -94,8 +94,12 @@ class ListCarsView @JvmOverloads constructor(
 
     }
 
-    override fun isOnTop() {
+    fun hideBtnTop(){
         btnUp?.hide()
+    }
+
+    override fun isOnTop() {
+        hideBtnTop()
     }
 
     override fun isNotOnTop() {

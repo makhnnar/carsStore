@@ -40,6 +40,7 @@ class ListCarsFragment : Fragment(),
         val view = binding.root
         binding.listView.userActions = this
         binding.listView.itemListActions = this
+        binding.listView.hideBtnTop()
         initObservers()
         return view
     }
@@ -48,7 +49,10 @@ class ListCarsFragment : Fragment(),
         carsViewModel.carsList.observe(
             viewLifecycleOwner,
             Observer {
-                binding.listView.setData(it)
+                if(it.isNotEmpty()){
+                    binding.noElements.visibility = View.GONE
+                    binding.listView.setData(it)
+                }
             }
         )
     }
