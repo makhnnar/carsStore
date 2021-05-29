@@ -16,4 +16,6 @@ data class Category(
     val name:String,
     @ColumnInfo(name = "valueName")
     val value:String,
+    @ColumnInfo(name = "editable")
+    val editable:Boolean = true
 )

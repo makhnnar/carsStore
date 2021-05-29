@@ -25,31 +25,33 @@ class EditCreateCarView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyle){
 
     var binding : ViewEditCreateBinding = ViewEditCreateBinding.inflate(
-            LayoutInflater.from(context), this
+            LayoutInflater.from(context),
+            this
     )
-    private var etModel : AppCompatEditText? = null
 
-    private var etPrice : AppCompatEditText? = null
+    private var etModel : AppCompatEditText
 
-    private var sState : AppCompatSpinner? = null
+    private var etPrice : AppCompatEditText
 
-    private var etSeats : AppCompatEditText? = null
+    private var sState : AppCompatSpinner
 
-    private var etDate : AppCompatEditText? = null
+    private var etSeats : AppCompatEditText
 
-    private var sCategory : AppCompatSpinner? = null
+    private var etDate : AppCompatEditText
 
-    private var etCategory : AppCompatEditText? = null
+    private var sCategory : AppCompatSpinner
 
-    private var etCatValue : AppCompatEditText? = null
+    private var etCategory : AppCompatEditText
 
-    private var lbCatValue : AppCompatTextView? = null
+    private var etCatValue : AppCompatEditText
 
-    private var btnSaveCar : FloatingActionButton? = null
+    private var lbCatValue : AppCompatTextView
 
-    private var btnSaveCategory : ImageView? = null
+    private var btnSaveCar : FloatingActionButton
 
-    private var btnCancelCategory : ImageView? = null
+    private var btnSaveCategory : ImageView
+
+    private var btnCancelCategory : ImageView
 
     private var carModel: CarModel? = null
 
@@ -73,26 +75,26 @@ class EditCreateCarView @JvmOverloads constructor(
         btnSaveCar = binding.btnDone
         btnSaveCategory = binding.btnAddCat
         btnCancelCategory = binding.btnDiscardCat
-        btnSaveCar?.setOnClickListener {
+        btnSaveCar.setOnClickListener {
             saveItem()
         }
-        btnSaveCategory?.setOnClickListener {
+        btnSaveCategory.setOnClickListener {
             saveCategory()
             hideEtCatAndBtns()
-            sCategory?.visibility = View.VISIBLE
+            sCategory.visibility = View.VISIBLE
         }
-        btnCancelCategory?.setOnClickListener {
+        btnCancelCategory.setOnClickListener {
             hideEtCatAndBtns()
-            sCategory?.visibility = View.VISIBLE
+            sCategory.visibility = View.VISIBLE
         }
-        sCategory?.setOnItemClickListener { parent, view, position, id ->
+        /*sCategory.setOnItemClickListener { parent, view, position, id ->
             if(position<categories.size){
-                lbCatValue?.text = "${categories[position]}"
+                lbCatValue.text = "${categories[position]}"
             }else{
-                sCategory?.visibility = View.GONE
+                sCategory.visibility = View.GONE
                 showAddCategory()
             }
-        }
+        }*/
     }
 
     private fun showAddCategory() {
@@ -162,6 +164,7 @@ class EditCreateCarView @JvmOverloads constructor(
     }
 
     fun setCar(carModel: CarModel?){
+        hideEtCatAndBtns()
         carModel?.let {
             this.carModel = it
             etModel?.setText(it.model)

@@ -21,7 +21,8 @@ class ListCarsView @JvmOverloads constructor(
     ScrollHelper.OnScrollEvents{
 
     var binding : ViewListBinding = ViewListBinding.inflate(
-        LayoutInflater.from(context), this
+            LayoutInflater.from(context),
+            this
     )
 
     var btnUp : FloatingActionButton? = null
