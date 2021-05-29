@@ -51,7 +51,7 @@ class CarsVH(
     ) {
         item?.let {
             model?.text = it.model
-            price?.text = "${it.price}"
+            price?.text = it.price
             category?.text = it.categoryName
         }
         clBgCard?.setOnClickListener {

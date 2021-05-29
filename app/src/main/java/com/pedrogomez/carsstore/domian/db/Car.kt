@@ -8,25 +8,18 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "car")
 data class Car(
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name = "id")
     val id:Long,
-    @NonNull
     @ColumnInfo(name = "cantSeats")
-    val cantSeats:Int,
-    @NonNull
+    val cantSeats:String,
     @ColumnInfo(name = "price")
-    val price:Double,
-    @NonNull
+    val price:String,
     @ColumnInfo(name = "isNew")
     val isNew:Boolean,
-    @NonNull
     @ColumnInfo(name = "model")
     val model:String,
-    @NonNull
     @ColumnInfo(name = "dateRelease")
     val dateRelease:String,
-    @NonNull
     @ColumnInfo(name = "idCategory")
     val idCategory:Long,
     @ColumnInfo(name = "idValue")

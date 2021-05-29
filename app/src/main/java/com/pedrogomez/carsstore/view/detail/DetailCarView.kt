@@ -65,14 +65,14 @@ class DetailCarView @JvmOverloads constructor(
     fun setData(carModel: CarModel){
         this.carModel = carModel
         tvModel?.text = carModel.model
-        tvPrice?.text = "${carModel.price}"
+        tvPrice?.text = carModel.price
         tvState?.text = getState(carModel.isNew?:false)
-        tvSeats?.text = "${carModel.cantSeats}"
+        tvSeats?.text = carModel.cantSeats
         tvDate?.text = carModel.dateRelease
         tvCategory?.text = carModel.categoryName
         if(carModel.valueName!=null){
             lbCatValue?.text = carModel.valueName
-            tvCatValue?.text = "${carModel.valueQuantity} ${carModel.valueQuantityUnit}"
+            tvCatValue?.text = carModel.valueQuantity
         }else{
             lbCatValue?.visibility = View.GONE
             tvCatValue?.visibility = View.GONE

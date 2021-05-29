@@ -8,12 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.pedrogomez.carsstore.R
+import com.pedrogomez.carsstore.base.FragmentBase
 import com.pedrogomez.carsstore.databinding.FragmentListBinding
 import com.pedrogomez.carsstore.domian.view.CarModel
 import com.pedrogomez.carsstore.presentation.CarsViewModel
 import org.koin.android.viewmodel.ext.android.getViewModel
 
-class ListCarsFragment : Fragment(),
+class ListCarsFragment : FragmentBase(),
     ListCarsView.UserActions,
     ListCarsView.ItemListActions{
 

@@ -9,8 +9,8 @@ class ViewToDBMapper : MapperContract {
     override fun getCarAsModelForDB(carModel: CarModel): Car {
         return Car(
                 carModel.id?:0,
-                carModel.cantSeats?:0,
-                carModel.price?:0.0,
+                carModel.cantSeats?:"0",
+                carModel.price?:"0",
                 carModel.isNew?:true,
                 carModel.model?:"",
                 carModel.dateRelease?:"",
@@ -23,7 +23,7 @@ class ViewToDBMapper : MapperContract {
         if(carModel.valueQuantity!=null && carModel.valueQuantityUnit!=null){
             return Value(
                     carModel.valueQuantityId?:0,
-                    carModel.valueQuantity?:0.0,
+                    carModel.valueQuantity?:"",
                     carModel.valueQuantityUnit?:"",
             )
         }

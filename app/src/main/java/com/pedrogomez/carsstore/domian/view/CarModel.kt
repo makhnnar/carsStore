@@ -2,8 +2,8 @@ package com.pedrogomez.carsstore.domian.view
 
 data class CarModel (
     val id:Long?,
-    val cantSeats:Int?,
-    val price:Double?,
+    val cantSeats:String?,
+    val price:String?,
     val isNew:Boolean?,
     val model:String?,
     val dateRelease:String?,
@@ -11,6 +11,6 @@ data class CarModel (
     val categoryName:String?,
     val valueName:String?,
     val valueQuantityId:Long?,
-    val valueQuantity:Double?,
+    val valueQuantity:String?,
     val valueQuantityUnit:String?,
 )

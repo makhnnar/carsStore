@@ -2,8 +2,10 @@ package com.pedrogomez.carsstore.view.editcreate
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatEditText
@@ -15,7 +17,6 @@ import com.pedrogomez.carsstore.R
 import com.pedrogomez.carsstore.databinding.ViewEditCreateBinding
 import com.pedrogomez.carsstore.domian.db.Category
 import com.pedrogomez.carsstore.domian.view.CarModel
-import java.util.*
 import kotlin.collections.ArrayList
 
 class EditCreateCarView @JvmOverloads constructor(
@@ -87,14 +88,28 @@ class EditCreateCarView @JvmOverloads constructor(
             hideEtCatAndBtns()
             sCategory.visibility = View.VISIBLE
         }
-        /*sCategory.setOnItemClickListener { parent, view, position, id ->
-            if(position<categories.size){
-                lbCatValue.text = "${categories[position]}"
-            }else{
-                sCategory.visibility = View.GONE
-                showAddCategory()
+        sCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+
+            override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?, position: Int,
+                    id: Long
+            ) {
+                if(position<categories.size){
+                    lbCatValue.text = "${categories[position].value}"
+                }else{
+                    sCategory.visibility = View.GONE
+                    showAddCategory()
+                }
             }
-        }*/
+
+            override fun onNothingSelected(
+                    parent: AdapterView<*>?
+            ) {
+
+            }
+
+        }
         val array : Array<String> = resources.getStringArray(R.array.state_car)
         val dataAdapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
                 this.context,
@@ -105,40 +120,40 @@ class EditCreateCarView @JvmOverloads constructor(
     }
 
     private fun showAddCategory() {
-        btnSaveCategory?.visibility = View.VISIBLE
-        btnCancelCategory?.visibility = View.VISIBLE
-        etCategory?.visibility = View.VISIBLE
+        btnSaveCategory.visibility = View.VISIBLE
+        btnCancelCategory.visibility = View.VISIBLE
+        etCategory.visibility = View.VISIBLE
     }
 
     private fun saveCategory() {
         var category = Category(
                 0,
-                etCategory?.text.toString(),
+                etCategory.text.toString(),
                 ""
         )
         userActions?.saveCategory(category)
     }
 
     private fun hideEtCatAndBtns() {
-        btnSaveCategory?.visibility = View.GONE
-        btnCancelCategory?.visibility = View.GONE
-        etCategory?.visibility = View.GONE
+        btnSaveCategory.visibility = View.GONE
+        btnCancelCategory.visibility = View.GONE
+        etCategory.visibility = View.GONE
     }
 
     private fun saveItem() {
         val category = categories[sCategory?.selectedItemPosition ?: 0]
         carModel = CarModel(
-                0,
-                etSeats.text.toString().toInt(),
-                etPrice.text.toString().toDouble(),
+                carModel?.id?:0,
+                etSeats.text.toString(),
+                etPrice.text.toString(),
                 sState.selectedItemPosition == 0,
                 etModel.text.toString(),
                 etDate.text.toString(),
                 category.id,
                 category.name,
                 category.value,
-                0,
-                etCatValue.text.toString().toDouble(),
+                carModel?.valueQuantityId?:0,
+                etCatValue.text.toString(),
                 ""
         )
         carModel?.let {
@@ -160,12 +175,21 @@ class EditCreateCarView @JvmOverloads constructor(
         )
         sCategory.adapter = dataAdapter
         carModel?.let {
-            lbCatValue.text = it.valueName
-            etCatValue.setText("${it.valueQuantity} ${it.valueQuantityUnit}")
+            setPositionCategory(it, categories)
+        }
+    }
+
+    private fun setPositionCategory(
+            carModel1: CarModel,
+            categories: List<Category>
+    ) {
+        if(categories.isNotEmpty()){
+            lbCatValue.text = carModel1.valueName?:""
+            etCatValue.setText(carModel1.valueQuantity)
             val selected = categories.filter { cat ->
-                it.id==cat.id
+                carModel1.categoryId == cat.id
             }
-            var indexInArray = categories.indexOf(selected)
+            var indexInArray = categories.indexOf(selected[0])
             sCategory.setSelection(indexInArray)
         }
     }
@@ -175,12 +199,13 @@ class EditCreateCarView @JvmOverloads constructor(
         carModel?.let {
             this.carModel = it
             etModel.setText(it.model)
-            etPrice.setText("${it.price}")
+            etPrice.setText(it.price)
             sState.setSelection(
                     getState(it.isNew ?: false)
             )
-            etSeats.setText("${it.cantSeats}")
+            etSeats.setText(it.cantSeats)
             etDate.setText(it.dateRelease)
+            setPositionCategory(it, categories)
         }
     }
 

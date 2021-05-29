@@ -16,7 +16,6 @@ val dbInstance = module {
             CarsDB::class.java,
             "carsStore.db"
         ).createFromAsset("database/categories.db")
-            .fallbackToDestructiveMigration()
             .build()
     }
 }

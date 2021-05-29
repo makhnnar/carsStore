@@ -8,13 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.pedrogomez.carsstore.R
+import com.pedrogomez.carsstore.base.FragmentBase
 import com.pedrogomez.carsstore.databinding.FragmentEditCreateBinding
 import com.pedrogomez.carsstore.domian.db.Category
 import com.pedrogomez.carsstore.domian.view.CarModel
 import com.pedrogomez.carsstore.presentation.CarsViewModel
 import org.koin.android.viewmodel.ext.android.getViewModel
 
-class EditCreateCarFragment : Fragment(),
+class EditCreateCarFragment : FragmentBase(),
     EditCreateCarView.UserActions{
 
     private val carsViewModel by lazy {
@@ -59,11 +60,13 @@ class EditCreateCarFragment : Fragment(),
     }
 
     override fun saveItem(carModel: CarModel) {
+        hideKeyboard(binding.editCreateView)
         carsViewModel.saveCar(carModel)
         findNavController().navigate(R.id.action_createEditFragment_to_listFragment)
     }
 
     override fun saveCategory(category: Category) {
+        hideKeyboard(binding.editCreateView)
         carsViewModel.addCategory(category)
     }
 
