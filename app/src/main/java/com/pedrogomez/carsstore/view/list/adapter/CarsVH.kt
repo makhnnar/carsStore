@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.pedrogomez.carsstore.R
 import com.pedrogomez.carsstore.databinding.ViewHolderItemBinding
@@ -33,12 +34,15 @@ class CarsVH(
 
     private var category : AppCompatTextView? = null
 
+    private var clBgCard : ConstraintLayout? = null
+
     init {
         binding = ViewHolderItemBinding.bind(itemView)
         context = parent.context
         model = binding?.tvModel
         price = binding?.tvPrice
         category = binding?.tvCategory
+        clBgCard = binding?.clBgCard
     }
 
     fun setData(
@@ -50,11 +54,9 @@ class CarsVH(
             price?.text = "${it.price}"
             category?.text = it.categoryName
         }
-        binding?.let { view ->
-            view.itemContainer.setOnClickListener {
-                item?.let{
-                    itemListActions?.goToDetail(it)
-                }
+        clBgCard?.setOnClickListener {
+            item?.let{
+                itemListActions?.goToDetail(it)
             }
         }
     }

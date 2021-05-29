@@ -25,13 +25,13 @@ class ListCarsView @JvmOverloads constructor(
             this
     )
 
-    var btnUp : FloatingActionButton? = null
+    var btnUp : FloatingActionButton
 
-    var btnAdd : FloatingActionButton? = null
+    var btnAdd : FloatingActionButton
 
-    var rvItems : RecyclerView? = null
+    var rvItems : RecyclerView
 
-    var loader : ProgressBar? = null
+    var loader : ProgressBar
 
     var itemListActions : ItemListActions? = null
 
@@ -51,10 +51,16 @@ class ListCarsView @JvmOverloads constructor(
         btnAdd = binding.btnAdd
         rvItems = binding.rvItems
         loader = binding.pbLoader
-        initRecyclerView()
+        btnUp?.setOnClickListener {
+            rvItems?.smoothScrollToPosition(0)
+        }
+        btnAdd?.setOnClickListener {
+            userActions?.addNewItem()
+        }
     }
 
     fun setData(items: List<CarModel>){
+        initRecyclerView()
         cAdapter.submitList(items)
     }
 
@@ -74,12 +80,6 @@ class ListCarsView @JvmOverloads constructor(
         rvItems?.addOnScrollListener(
                 scrollHelper
         )
-        btnUp?.setOnClickListener {
-            rvItems?.smoothScrollToPosition(0)
-        }
-        btnAdd?.setOnClickListener {
-            userActions?.addNewItem()
-        }
     }
 
     interface UserActions{
