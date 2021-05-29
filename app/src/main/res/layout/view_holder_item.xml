@@ -98,7 +98,7 @@
             app:layout_constraintEnd_toStartOf="@id/gdH33"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvPrice"/>
+            app:layout_constraintBottom_toTopOf="@id/lbPrice"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/lbPrice"
@@ -114,10 +114,10 @@
             app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform"
             app:autoSizeStepGranularity="1sp"
-            app:layout_constraintTop_toBottomOf="@id/tvModel"
+            app:layout_constraintTop_toBottomOf="@id/lbModel"
             app:layout_constraintEnd_toStartOf="@id/gdH33"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvCategory"/>
+            app:layout_constraintBottom_toTopOf="@id/lbCategory"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/lbCategory"
@@ -133,7 +133,7 @@
             app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform"
             app:autoSizeStepGranularity="1sp"
-            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            app:layout_constraintTop_toBottomOf="@id/lbPrice"
             app:layout_constraintEnd_toStartOf="@id/gdH33"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

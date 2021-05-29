@@ -14,4 +14,8 @@
     <string name="dummy_date">12/12/24</string>
     <string name="category_value">Category Value</string>
     <string name="dummy_category_value">1020 GHz</string>
+    <string-array name="state_car">
+        <item>New</item>
+        <item>Used</item>
+    </string-array>
 </resources>

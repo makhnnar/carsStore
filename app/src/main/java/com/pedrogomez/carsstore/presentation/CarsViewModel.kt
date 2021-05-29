@@ -52,4 +52,15 @@ class CarsViewModel(
 
     fun getCarToEdit() = carDetailToEdit
 
+    fun saveCar(carFromView: CarModel) {
+        viewModelScope.launch {
+            if(carDetailToEdit.value!=null){
+                contract.updateCar(carFromView)
+            }else{
+                contract.addCar(carFromView)
+            }
+        }
+
+    }
+
 }

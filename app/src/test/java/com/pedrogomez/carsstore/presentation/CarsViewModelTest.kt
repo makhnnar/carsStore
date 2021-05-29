@@ -102,17 +102,47 @@ class CarsViewModelTest {
         }
     }
 
+    @Test
+    fun saveCarWithEditNotNull(){
+        runBlocking {
+            SUT.setCarToEdit(DataHelper.carView)
+            SUT.getCarToEdit().getOrAwaitValue()
+            SUT.saveCar(DataHelper.carView)
+            assert(
+                repositoryContractTD.callUpdateCar
+            )
+        }
+    }
+
+    @Test
+    fun saveCarWithEditNull(){
+        runBlocking {
+            SUT.setCarToEdit(null)
+            SUT.getCarToEdit().getOrAwaitValue()
+            SUT.saveCar(DataHelper.carView)
+            assert(
+                repositoryContractTD.callAddCar
+            )
+        }
+    }
+
     class RepositoryContractTD : RepositoryContract {
 
         var carModel: CarModel? = null
 
         var category: Category? = null
 
+        var callAddCar = false
+
+        var callUpdateCar = false
+
         override suspend fun addCar(carModel: CarModel) {
+            callAddCar = true
             this.carModel = carModel
         }
 
         override suspend fun updateCar(carModel: CarModel) {
+            callUpdateCar = true
             this.carModel = carModel
         }
 

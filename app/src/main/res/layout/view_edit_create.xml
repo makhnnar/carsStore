@@ -15,7 +15,7 @@
         android:orientation="vertical" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/tvModel"
+        android:id="@+id/etModel"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:hint="@string/dummy_model"
@@ -31,10 +31,10 @@
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvPrice"/>
+        app:layout_constraintBottom_toTopOf="@id/etPrice"/>
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/tvPrice"
+        android:id="@+id/etPrice"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:hint="@string/dummy_price"
@@ -47,13 +47,13 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/tvModel"
+        app:layout_constraintTop_toBottomOf="@id/etModel"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvSeats"/>
+        app:layout_constraintBottom_toTopOf="@id/etSeats"/>
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/tvSeats"
+        android:id="@+id/etSeats"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:hint="@string/dummy_seats"
@@ -66,33 +66,33 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/tvPrice"
+        app:layout_constraintTop_toBottomOf="@id/etPrice"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvState"/>
+        app:layout_constraintBottom_toTopOf="@id/sState"/>
 
     <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/tvState"
+        android:id="@+id/sState"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
-        android:hint="@string/dummy_state"
-        android:maxLines="1"
+        android:entries="@array/state_car"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:spinnerMode="dialog"
         app:autoSizeMaxTextSize="16sp"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeStepGranularity="1sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@id/tvRelease"
+        app:layout_constraintBottom_toTopOf="@id/etRelease"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/gdH33"
-        app:layout_constraintTop_toBottomOf="@id/tvSeats" />
+        app:layout_constraintTop_toBottomOf="@id/etSeats" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/tvRelease"
+        android:id="@+id/etRelease"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:hint="@string/dummy_date"
@@ -105,13 +105,33 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/tvState"
+        app:layout_constraintTop_toBottomOf="@id/sState"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvCategory"/>
+        app:layout_constraintBottom_toTopOf="@id/etCategory"/>
 
     <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/tvCategory"
+        android:id="@+id/sCategory"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:hint="@string/dummy_category"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_regular"
+        android:maxLines="1"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:spinnerMode="dialog"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeStepGranularity="1sp"
+        app:layout_constraintTop_toBottomOf="@id/etRelease"
+        app:layout_constraintStart_toEndOf="@id/gdH33"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvCategoryValue"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etCategory"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:hint="@string/dummy_category"
@@ -124,8 +144,30 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/tvRelease"
+        app:layout_constraintTop_toBottomOf="@id/etRelease"
         app:layout_constraintStart_toEndOf="@id/gdH33"
+        app:layout_constraintEnd_toStartOf="@id/btnDiscardCat"
+        app:layout_constraintBottom_toTopOf="@+id/tvCategoryValue"/>
+
+    <ImageView
+        android:id="@+id/btnDiscardCat"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_close"
+        app:tint="@color/red"
+        app:layout_constraintTop_toBottomOf="@id/etRelease"
+        app:layout_constraintStart_toEndOf="@id/etCategory"
+        app:layout_constraintEnd_toStartOf="@id/btnAddCat"
+        app:layout_constraintBottom_toTopOf="@+id/tvCategoryValue"/>
+
+    <ImageView
+        android:id="@+id/btnAddCat"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_done"
+        app:tint="@color/green"
+        app:layout_constraintTop_toBottomOf="@id/etRelease"
+        app:layout_constraintStart_toEndOf="@id/btnDiscardCat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/tvCategoryValue"/>
 
@@ -143,7 +185,7 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:autoSizeStepGranularity="1sp"
-        app:layout_constraintTop_toBottomOf="@id/tvCategory"
+        app:layout_constraintTop_toBottomOf="@id/sCategory"
         app:layout_constraintStart_toEndOf="@id/gdH33"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
